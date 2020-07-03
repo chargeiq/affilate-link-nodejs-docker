@@ -1,4 +1,5 @@
 var http = require('http');
+var restApi = require('./rest-apis.js')
 
 var port = 8181;
 
@@ -17,7 +18,7 @@ http.createServer(function (request, response) {
     response.end();
 }).listen(port);
 
-
+restApi.method();
 // Print the following message in Terminal
 console.log('Server running at the following port: ' + port);
 console.log(Date.now().toString());
