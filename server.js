@@ -1,24 +1,25 @@
+//Requirements
 var http = require('http');
 var restApi = require('./rest-apis.js')
+var urlParser = require('./url-parser.js')
 
+//HTTP Port
 var port = 8181;
+var requestUrl = '';
+var url = require('url')
+var q = ''
+var request_object = ''
 
 http.createServer(function (request, response) {
-
-    // Send HTTP Head 
-    // HTTP status: 200 : OK
-    // Content type: text/plain
-    
     response.writeHead(200, {'Content-Type': 'text/html'});
-    response.write('Hello World\n');
-    response.write('Double Hello World\n');
-    response.write(Date.now().toString() + '\n');
-    response.write(request.url)
-    
+    requestUrl = request.url;
+    q = url.parse(requestUrl, true);
+    request_object = q.query;
+    console.log(request_object.year)
+
     response.end();
 }).listen(port);
 
-restApi.method();
 // Print the following message in Terminal
 console.log('Server running at the following port: ' + port);
-console.log(Date.now().toString());
+console.log('Current time: ' + Date.now().toString());
