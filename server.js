@@ -14,9 +14,15 @@ http.createServer(function (request, response) {
     response.writeHead(200, {'Content-Type': 'text/html'});
     requestUrl = request.url;
     q = url.parse(requestUrl, true);
-    request_object = q.query;
-    console.log(request_object.year)
-
+    if(requestUrl.toString()!='/favicon.ico')
+    {
+        console.log(requestUrl.toString());
+        request_object = q.query;
+        year = request_object.year;
+        console.log('Year: ' + year);
+        console.log(request_object.query);
+        console.log('------');
+    }
     response.end();
 }).listen(port);
 
