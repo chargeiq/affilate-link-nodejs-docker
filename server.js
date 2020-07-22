@@ -2,6 +2,7 @@
 var http = require('http');
 var restApi = require('./rest-apis.js')
 var urlParser = require('./url-parser.js')
+var dbController = require('./couchdb-controller.js')
 
 //HTTP Port
 var port = 8181;
@@ -22,6 +23,7 @@ http.createServer(function (request, response) {
         console.log('Year: ' + year);
         console.log(request_object.query);
         console.log('------');
+        dbController.addNewAffilateDocument(year.toString());
     }
     response.end();
 }).listen(port);
