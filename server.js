@@ -17,13 +17,18 @@ http.createServer(function (request, response) {
     q = url.parse(requestUrl, true);
     if(requestUrl.toString()!='/favicon.ico')
     {
-        console.log(requestUrl.toString());
+        //Parse the request URL into request object
         request_object = q.query;
+
+        //Mapping of the request object values into variables
         year = request_object.year;
-        console.log('Year: ' + year);
-        console.log(request_object.query);
-        console.log('------');
-        dbController.addNewAffilateDocument(year.toString());
+        company = request_object.company;
+        
+
+        //add the data coming from the request link into CouchDB Database
+        dbController.addNewAffilateDocument(company +  ':'+ year +'' +  Date.now().toString())
+
+
     }
     response.end();
 }).listen(port);
