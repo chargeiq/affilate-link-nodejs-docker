@@ -9,8 +9,8 @@ var port = 8181;
 var requestUrl = '';
 var url = require('url')
 var q = ''
-var request_object = ''
 
+//create Affilate Link Service Process
 http.createServer(function (request, response) {
     response.writeHead(200, {'Content-Type': 'text/html'});
     requestUrl = request.url;
@@ -18,16 +18,9 @@ http.createServer(function (request, response) {
     if(requestUrl.toString()!='/favicon.ico')
     {
         //Parse the request URL into request object
-        request_object = q.query;
-
-        //Mapping of the request object values into variables
-        year = request_object.year;
-        company = request_object.company;
-        
-
-        //add the data coming from the request link into CouchDB Database
-        dbController.addNewAffilateDocument(company +  ':'+ year +'' +  Date.now().toString())
-
+        var affilateObject = urlParser.parseUrlToObject(q)
+        dbController.addNewAffilateDocument(affilateObject);
+        console.log('added object');
 
     }
     response.end();
