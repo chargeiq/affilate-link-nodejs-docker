@@ -2,18 +2,13 @@
 //Requirements
 
 var express = require('express');
-var http = require('http');
 
 //internal requirements
-var path = require('path');
 var urlParser = require('./url-parser.js')
 var dbController = require('./couchdb-controller.js')
 
 //HTTP Port
 var port = 8181;
-var requestUrl = '';
-var url = require('url')
-var q = ''
 
 var app = express();
 
@@ -24,11 +19,14 @@ app.get('/default', function(req,res) {
 
 app.get('/link', function(req,res) {
     
-    res.send("Buy something at us! " + req.query.tagId);
+    var affilateObject = urlParser.parseUrlToObject(req);
+    dbController.addNewAffilateDocument(affilateObject);
+    res.send("Buy something at us! " + affilateObject.year +affilateObject.purchaseObject+affilateObject.company);
 });
 
 app.listen(port, function()
     {
+        
         console.log(`Example app listening at http://localhost:${port}`)
     })
 /*
