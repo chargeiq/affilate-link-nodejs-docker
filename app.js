@@ -2,7 +2,7 @@
 //Requirements
 
 var express = require('express');
-
+var cookieParser = require('cookie-parser');
 //internal requirements
 var urlParser = require('./url-parser.js')
 var dbController = require('./couchdb-controller.js')
@@ -11,22 +11,21 @@ var dbController = require('./couchdb-controller.js')
 var port = 8181;
 
 var app = express();
+app.use(cookieParser());
 
 app.get('/default', function(req,res) {
     res.send("Hello");
     console.log("Somebody said hello");
 });
 
-app.get('/link', function(req,res) {
-    
+app.post('/link', function(req,res) {
     var affilateObject = urlParser.parseUrlToObject(req);
     dbController.addNewAffilateDocument(affilateObject);
-    res.send("Buy something at us! " + affilateObject.year +affilateObject.purchaseObject+affilateObject.company);
+    res.send("Buy something at us! " + affilateObject.year + " "+affilateObject.purchaseObject+ " " + affilateObject.company);
 });
 
 app.listen(port, function()
     {
-        
         console.log(`Example app listening at http://localhost:${port}`)
     })
 /*
