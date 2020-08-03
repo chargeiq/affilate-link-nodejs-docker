@@ -21,18 +21,18 @@ app.get('/default', function(req,res) {
 app.post('/link', function(req,res) {
     var affilateObject = urlParser.parseUrlToObject(req);
     dbController.addNewAffilateDocument(affilateObject);
-    res.send("Buy something at us! " + affilateObject.year + " "+affilateObject.purchaseObject+ " " + affilateObject.company);
+    res.send("Buy something at us! " + affilateObject.date + " "+affilateObject.purchaseObject+ " " + affilateObject.company);
 });
 
 //JSON object to be added to cookie 
-let users = { 
+let affilateUser = { 
     name : "ChargeIQ", 
     Age : "30"
 } 
     
 //Route for adding cookie 
 app.get('/setuser', (req, res)=>{ 
-    res.cookie("userData", users); 
+    res.cookie("userData", affilateUser); 
     res.send('user data added to cookie'); 
 }); 
     

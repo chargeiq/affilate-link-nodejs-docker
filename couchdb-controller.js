@@ -1,4 +1,5 @@
 const nano = require('nano');
+const uuid = require('uuid');
 
 const nanoCouchCiq = require('nano')('https://admin:admin@db.chargeiq.de/');
 
@@ -6,7 +7,8 @@ const nanoCouchCiq = require('nano')('https://admin:admin@db.chargeiq.de/');
 const affilateLinkDB = nanoCouchCiq.db.use('affilate-marketing-link');
 
 exports.addNewAffilateDocument = function addNewAffilateDocument (affiliate){
-    var documentName = affiliate.company + ":" + affiliate.year
+    // generate UUID here 
+    var documentName = affiliate.company + ":" + affiliate.date + "_" + uuid.v1()
     affilateLinkDB.insert(
         {
             purchaseObject: affiliate.purchaseObject,

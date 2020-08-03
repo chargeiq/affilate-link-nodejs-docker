@@ -10,6 +10,6 @@ In this project repository, there are following NodeJS Scripts. The functionalit
 
 ## Content of a referral
 An affilate link code contains the following information (currently): 
-- <code>Year</code>: The time at which the affilate link code is called.
-- <code>Date</code>: The date at which the affliate link code is called.
+- <code>Date</code>: The date at which the affilate link code is called.
 - <code>Product</code>: Which product has been called by the user? Can be everything which is offered by ChargeIQ. 
+- <code>Company<code>: Which affilate partner has called our affilate link? 
