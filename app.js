@@ -43,7 +43,15 @@ app.get('/getuser', (req, res)=>{
     res.send(req.cookies); 
 }); */
       
+app.post('/updateaffiliatepaid/:id/:rev', (req, res) => {
+    const affiliateId = req.params.id;
+    const rev = req.params.rev;
+    console.log(affiliateId);
+    dbController.updatePaymentStatus(affiliateId, rev)
+    res.status(200).send(affiliateId);
+});
+
 app.listen(port, function()
 {
     console.log(`Example app listening at http://localhost:${port}`)
-})
+});

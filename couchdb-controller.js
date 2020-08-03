@@ -14,14 +14,25 @@ exports.addNewAffilateDocument = function addNewAffilateDocument (affiliate){
     var documentName = affiliate.company + ":" + affiliate.date + "_" + internalId
     affilateLinkDB.insert(
         {
-            ID: internalId,
+            internalID: internalId,
             date: affiliate.date,
+            purchaseObject: affiliate.purchaseObject,
             company: affiliate.company,
-            purchaseObject: affiliate.purchaseObject
+            paid: affiliate.paid
         },
         documentName
     ).catch((e) =>{
         console.log(e);
     });
     internalId++;
+}
+
+exports.updatePaymentStatus = function updatePayment (affiliate, id, _rev){
+
+    affilateLinkDB.insert({
+        paid: true,
+        _id: id,
+        _rev        
+    }
+    )
 }
