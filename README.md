@@ -7,3 +7,9 @@ In this project repository, there are following NodeJS Scripts. The functionalit
 - <code>app.js</code>: The main service written by express is located here.
 - <code>url-parser.js</code>: Parses the affiliate marketing link being called by the external shop.
 - <code>couchdb-controller.js</code>: Deals with the communication between the service and the CouchDB link. 
+
+## Content of a referral
+An affilate link code contains the following information (currently): 
+- <code>Year</code>: The time at which the affilate link code is called.
+- <code>Date</code>: The date at which the affliate link code is called.
+- <code>Product</code>: Which product has been called by the user? Can be everything which is offered by ChargeIQ. 
