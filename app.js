@@ -27,7 +27,8 @@ app.post('/link', function(req,res) {
 //JSON object to be added to cookie 
 let affilateUser = { 
     name : "ChargeIQ", 
-    Age : "30"
+    Age : "30",
+    company : "enbw"
 } 
     
 //Route for adding cookie 
