@@ -39,11 +39,12 @@ app.get('/:id', function(req,res) {
 app.post('/updateaffiliatestatus/:id/:rev', (req, res, status) => {
     const affiliateId = req.params.id;
     const rev = req.params.rev;
-    console.log(affiliateId);
-    affiliate = dbController.getAffiliateObject(affiliateId);
-    console.log(affiliate);
-    dbController.updatePaymentStatus(affiliate, affiliateId, rev);
-    res.status(200).send(affiliate);
+    dbController.getAffiliateObject(affiliateId, function(response){
+        console.log(response);
+        dbController.updatePaymentStatus(response, affiliateId, rev);
+    
+        res.status(200).send(response);
+    });
 });
 
 app.listen(port, function()
