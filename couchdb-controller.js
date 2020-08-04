@@ -33,7 +33,6 @@ exports.updatePaymentStatus = function updatePayment(affiliate,  _rev){
 }
 
 exports.getAffiliateObject = function getAffiliateObject(id, callback){
-     
     affilateLinkDB.get(id, (err,body) => {
         if (!err){
             var affilateParsed = body;

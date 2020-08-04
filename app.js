@@ -42,7 +42,7 @@ app.post('/updateaffiliatestatus/:id/:rev', (req, res, status) => {
     console.log(affiliateId);
     affiliate = dbController.getAffiliateObject(affiliateId);
     console.log(affiliate);
-    //dbController.updatePaymentStatus(affiliate, affiliateId, rev);
+    dbController.updatePaymentStatus(affiliate, affiliateId, rev);
     res.status(200).send(affiliate);
 });
 
