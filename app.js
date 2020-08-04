@@ -1,14 +1,12 @@
-//The same server but uses express
-//Requirements
-
+//Used modules
 var express = require('express');
-//internal requirements
 var urlParser = require('./url-parser.js')
 var dbController = require('./couchdb-controller.js')
 
-//HTTP Port
+//HTTP Port configuration
 var port = 8181;
 var app = express();
+
 
 app.get('/default', function(req,res) {
     res.send("Welcome to chargeIQ");
@@ -22,8 +20,8 @@ app.post('/link', function(req,res) {
     res.send("Buy something at us! " + affilateObject.date + " "+affilateObject.purchaseObject+ " " + affilateObject.company);
 });
 
+//GET an affiliate link module with certain ID
 app.get('/:id', function(req,res) {
-    
     const affiliateId = req.params.id;
     //console.log(affiliateId);
     dbController.getAffiliateObject(affiliateId, function(response){
@@ -33,7 +31,6 @@ app.get('/:id', function(req,res) {
     });
     
 });
-
 
 //Update the payment status of a certain affiliate ID if it is paid or not
 app.post('/updateaffiliatestatus/:id/:rev', (req, res, status) => {
