@@ -27,12 +27,18 @@ exports.addNewAffilateDocument = function addNewAffilateDocument (affiliate){
     internalId++;
 }
 
-exports.updatePaymentStatus = function updatePayment (affiliate, id, _rev){
+exports.updatePaymentStatus = function updatePayment(affiliate,  _rev){
+    affiliate['paid']=true;
+    affilateLinkDB.insert(affiliate);
+}
 
-    affilateLinkDB.insert({
-        paid: true,
-        _id: id,
-        _rev        
-    }
-    )
+exports.getAffiliateObject = function getAffiliateObject(id, callback){
+     
+    affilateLinkDB.get(id, (err,body) => {
+        if (!err){
+            var affilateParsed = body;
+            //console.log(affilateParsed);
+            return callback(affilateParsed);
+        }
+    })
 }
