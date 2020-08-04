@@ -4,7 +4,7 @@ var urlParser = require('./url-parser.js')
 var dbController = require('./couchdb-controller.js')
 
 //HTTP Port configuration
-var port = 8181;
+var port = 3000;
 var app = express();
 
 
